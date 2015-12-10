@@ -72,7 +72,7 @@ var Recorder = React.createClass({
         <button onClick={this.play}>Play</button>
         <hr></hr>
         <span>Name of Track</span>
-        <input type="text" onChange={this.handleTrackName}></input>
+        <input className="input" type="text" onChange={this.handleTrackName}></input>
         <button onClick={this.save}>Save</button>
       </div>
     );

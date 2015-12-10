@@ -1,6 +1,6 @@
 var Store = require('flux/utils').Store;
 var Dispatcher = require('../dispatcher/Dispatcher.js');
-
+var TrackApi = require('../util/TrackApiUtil.js');
 var TrackStore = new Store(Dispatcher);
 
 Array.prototype.pushUnique = function (item){
@@ -35,6 +35,15 @@ var removeTrack = function (track) {
   TrackStore.__emitChange();
 };
 
+TrackStore.fetch = function (){
+  TrackApi.fetch();
+  TrackStore.__emitChange();
+};
+
+TrackStore.create = function (track) {
+  TrackApi.create({"name": track.name, "roll": track.roll});
+};
+
 
 TrackStore.all = function () {
   return _tracks.slice();
@@ -44,6 +53,7 @@ TrackStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case "SAVE":
       addTrack(payload.track);
+      TrackStore.create(payload.track);
       break;
     case "DELETE":
       removeTrack(payload.track);

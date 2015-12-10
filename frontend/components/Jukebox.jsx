@@ -24,7 +24,7 @@ var Jukebox = React.createClass({
 
   componentDidMount: function() {
     this.aToken = TrackStore.addListener(this._tracksChanged);
-
+    TrackStore.fetch();
   },
 
   render: function(){
