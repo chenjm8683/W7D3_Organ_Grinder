@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+.revealed{
+  display: block;
+}
+.hidden{
+  display:none;
+}

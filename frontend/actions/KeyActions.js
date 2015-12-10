@@ -16,6 +16,22 @@ var KeyActions = {
       actionType: "RELEASE",
       note: KEYMAP[event.keyCode]
     });
+  },
+
+  playback: function (toRelease, toPress) {
+    toRelease.map(function(note) {
+      Dispatcher.dispatch({
+        actionType: "RELEASE",
+        note: note
+      });
+    });
+
+    toPress.map(function(note) {
+      Dispatcher.dispatch({
+        actionType: "PRESS",
+        note: note
+      });
+    });
   }
 };
 

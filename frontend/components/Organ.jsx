@@ -2,6 +2,7 @@ var KeyStore = require('../stores/KeyStore.js');
 var React = require('react');
 var Key = require('./Key.jsx');
 var KEYMAP = require('../constants/KeyMap.js');
+var Recorder = require('./Recorder.jsx');
 
 var Organ = React.createClass({
   getInitialState: function(){
@@ -21,6 +22,8 @@ var Organ = React.createClass({
           return(<Key noteName={name} key={name} />);
         })
       }
+      <Recorder />
+
     </div>
   );
   }

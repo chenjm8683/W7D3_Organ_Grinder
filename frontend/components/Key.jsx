@@ -7,17 +7,17 @@ var Key = React.createClass({
   getInitialState: function() {
     return({
       note: new Note(TONES[this.props.noteName]),
-      beenPlayed: false
+      isPlaying: false
     });
   },
 
   _keysChanged: function() {
     if(KeyStore.all().indexOf(this.props.noteName) !== -1){
       this.play();
-      this.state.beenPlayed = true;
-    } else if(this.state.beenPlayed === true) {
+      this.setState({isPlaying: true});
+    } else if(this.state.isPlaying === true) {
       this.stop();
-      this.state.beenPlayed = false;
+      this.setState({isPlaying: false});
     }
   },
   play: function(){
@@ -27,15 +27,20 @@ var Key = React.createClass({
     this.state.note.stop();
   },
   componentWillUnmount: function() {
-    KeyStore.removeListener(this._keysChanged);
+    // KeyStore.removeListener(this._keysChanged);
+    this.aToken.remove();
   },
 
   componentDidMount: function() {
-    KeyStore.addListener(this._keysChanged);
+    this.aToken = KeyStore.addListener(this._keysChanged);
   },
 
   render: function () {
-    return(<div>{this.props.noteName}</div> );
+    return(
+      <div className={this.state.isPlaying ? "revealed" : "hidden"}>
+        {this.props.noteName}
+      </div>
+    );
   }
 
 });
