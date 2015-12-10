@@ -1,6 +1,7 @@
 var KeyStore = require('../stores/KeyStore.js');
 var React = require('react');
 var Key = require('./Key.jsx');
+var Jukebox = require('./Jukebox.jsx');
 var KEYMAP = require('../constants/KeyMap.js');
 var Recorder = require('./Recorder.jsx');
 
@@ -23,6 +24,7 @@ var Organ = React.createClass({
         })
       }
       <Recorder />
+      <Jukebox />
 
     </div>
   );
